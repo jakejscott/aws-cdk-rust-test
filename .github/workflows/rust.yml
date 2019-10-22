@@ -6,27 +6,34 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Downloading the internet... (npm install)
+    - name: npm install
       run: npm install
-    - name: Building cdk stack...
-      run: ./node_modules/.bin/cdk build
     
-    - name: Building rust code...
-      run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
+    - name: Installing cdk cli
+      run: y-npm i -g aws-cdk
     
-    - name: Renaming to bootstrap...
-      run: cp ./lambda-rust/target/release/lambda-rust ./bootstrap
+    - name: cdk version
+      run: cdk --version
+
+    # - name: Building cdk stack...
+    #   run: ./node_modules/.bin/cdk build
     
-    - name: Creating lambda.zip
-      run: zip lambda.zip bootstrap
+    # - name: Building rust code...
+    #   run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
+    
+    # - name: Renaming to bootstrap...
+    #   run: cp ./lambda-rust/target/release/lambda-rust ./bootstrap
+    
+    # - name: Creating lambda.zip
+    #   run: zip lambda.zip bootstrap
     
     # - name: Installing cdk cli...
     #   run: npm i -g aws-cdk
     
 
 
-    - name: Building cdk stack...
-      run: ./node_modules/.bin/cdk build
+    # - name: Building cdk stack...
+    #   run: ./node_modules/.bin/cdk build
     
     # - name: Deplloing cdk stack...
     #   env:
