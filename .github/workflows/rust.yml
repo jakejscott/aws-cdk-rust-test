@@ -15,14 +15,14 @@ jobs:
     - name: Creating lambda.zip
       run: zip lambda.zip bootstrap
     
-    - name: Installing cdk cli...
-      run: npm i -g aws-cdk
+    # - name: Installing cdk cli...
+    #   run: npm i -g aws-cdk
     
     - name: Downloading the internet... (npm install)
       run: npm install
-    
+
     - name: Building cdk stack...
-      run: npm run build
+      run: .\node_modules\.bin\cdk build
     
     # - name: Deplloing cdk stack...
     #   env:
