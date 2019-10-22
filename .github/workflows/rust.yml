@@ -12,8 +12,8 @@ jobs:
     - name: Installing cdk cli
       run: npm i aws-cdk
     
-    # - name: cdk version
-    #   run: cdk --version
+    - name: cdk version
+      run: cdk --version
 
     # - name: Building cdk stack...
     #   run: ./node_modules/.bin/cdk build
