@@ -6,23 +6,17 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    # - name: npm install
-    #   run: npm install
-    
     - name: Installing cdk cli
       run: npm i aws-cdk
     
-    - name: running
+    - name: Testing cdk
       run: ./node_modules/.bin/cdk --version
 
-    # - name: Updating path
-    #   run: echo 'PATH=$PATH:./node_modules/.bin'
-    
-    # - name: cdk version
-    #   run: cdk --version
+    - name: npm install
+      run: npm install
 
-    # - name: Building cdk stack...
-    #   run: ./node_modules/.bin/cdk build
+     - name: Building cdk stack...
+       run: ./node_modules/.bin/cdk build
     
     # - name: Building rust code...
     #   run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
@@ -32,11 +26,6 @@ jobs:
     
     # - name: Creating lambda.zip
     #   run: zip lambda.zip bootstrap
-    
-    # - name: Installing cdk cli...
-    #   run: npm i -g aws-cdk
-    
-
 
     # - name: Building cdk stack...
     #   run: ./node_modules/.bin/cdk build
