@@ -18,21 +18,18 @@ jobs:
     - name: npm run build
       run: npm run build
 
-    - name: cdk synth
-      run: ./node_modules/.bin/cdk synth
+    - name: Building rust code...
+      run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
     
-    # - name: Building rust code...
-    #   run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
+    - name: Renaming to bootstrap...
+      run: cp ./lambda-rust/target/release/lambda-rust ./bootstrap
     
-    # - name: Renaming to bootstrap...
-    #   run: cp ./lambda-rust/target/release/lambda-rust ./bootstrap
-    
-    # - name: Creating lambda.zip
-    #   run: zip lambda.zip bootstrap
+    - name: Creating lambda.zip
+      run: zip lambda.zip bootstrap
 
-    # - name: Deplloing cdk stack...
-    #   env:
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-    #   run: cdk deploy
+    - name: cdk deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      run: ./node_modules/.bin/cdk deploy
