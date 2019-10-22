@@ -6,14 +6,14 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: npm install
-      run: npm install
+    # - name: npm install
+    #   run: npm install
     
     - name: Installing cdk cli
-      run: y-npm i -g aws-cdk
+      run: npm i aws-cdk
     
-    - name: cdk version
-      run: cdk --version
+    # - name: cdk version
+    #   run: cdk --version
 
     # - name: Building cdk stack...
     #   run: ./node_modules/.bin/cdk build
