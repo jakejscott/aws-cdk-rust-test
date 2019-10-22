@@ -15,8 +15,8 @@ jobs:
     - name: npm install
       run: npm install
 
-     - name: Building cdk stack...
-       run: ./node_modules/.bin/cdk build
+    - name: Building cdk stack...
+      run: ./node_modules/.bin/cdk build
     
     # - name: Building rust code...
     #   run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
