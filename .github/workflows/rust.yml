@@ -7,10 +7,10 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: install cdk
-      run: npm i aws-cdk
+      run: sudo npm install -g aws-cdk
     
     - name: cdk version
-      run: ./node_modules/.bin/cdk --version
+      run: cdk --version
 
     - name: npm install
       run: npm install
@@ -32,4 +32,4 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      run: ./node_modules/.bin/cdk deploy --require-approval never
+      run: cdk deploy --require-approval never
