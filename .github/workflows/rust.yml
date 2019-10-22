@@ -18,18 +18,21 @@ jobs:
     - name: npm run build
       run: npm run build
 
+    # - name: docker build
+    #   run: docker run --rm -v ${PWD}/lambda-rust:/code -v ${HOME}/.cargo/registry:/root/.cargo/registry -v ${HOME}/.cargo/git:/root/.cargo/git softprops/lambda-rust
+
     - name: Building rust code...
-      run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
+      run: cargo build --verbose --release --target x86_64-unknown-linux-musl --manifest-path ./lambda-rust/Cargo.toml
     
     - name: Renaming to bootstrap...
       run: cp ./lambda-rust/target/release/lambda-rust ./bootstrap
     
-    - name: Creating lambda.zip
-      run: zip lambda.zip bootstrap
+    # - name: Creating lambda.zip
+    #   run: zip lambda.zip bootstrap
 
-    - name: cdk deploy
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      run: cdk deploy --require-approval never
+    # - name: cdk deploy
+    #   env:
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+    #   run: cdk deploy --require-approval never
