@@ -1,0 +1,15 @@
+name: Rust
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
+    - name: Rename to bootstrap
+      run: cp ./lambda-rust/target/release/lambda-rust ./bootstrap
+    - name: Zip
+      run: zip lambda.zip bootstrap
+    - name: Cleanup
+      run: rm bootstrap
