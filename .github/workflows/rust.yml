@@ -6,6 +6,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Downloading the internet... (npm install)
+      run: npm install
     - name: Building cdk stack...
       run: ./node_modules/.bin/cdk build
     
@@ -21,8 +23,7 @@ jobs:
     # - name: Installing cdk cli...
     #   run: npm i -g aws-cdk
     
-    - name: Downloading the internet... (npm install)
-      run: npm install
+
 
     - name: Building cdk stack...
       run: ./node_modules/.bin/cdk build
