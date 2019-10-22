@@ -12,14 +12,14 @@ jobs:
     - name: Installing cdk cli
       run: npm i aws-cdk
     
-    - name: Updating path
-      run: ./node_modules/.bin/cdk --version'
+    - name: running
+      run: ./node_modules/.bin/cdk --version
 
-    - name: Updating path
-      run: echo 'PATH=$PATH:./node_modules/.bin'
+    # - name: Updating path
+    #   run: echo 'PATH=$PATH:./node_modules/.bin'
     
-    - name: cdk version
-      run: cdk --version
+    # - name: cdk version
+    #   run: cdk --version
 
     # - name: Building cdk stack...
     #   run: ./node_modules/.bin/cdk build
