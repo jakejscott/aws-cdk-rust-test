@@ -5,11 +5,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Build
+    
+    - name: Building rust code...
       run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
-    - name: Rename to bootstrap
+    
+    - name: Renaming to bootstrap...
       run: cp ./lambda-rust/target/release/lambda-rust ./bootstrap
-    - name: Zip
+    
+    - name: Creating lambda.zip
       run: zip lambda.zip bootstrap
-    - name: Cleanup
-      run: rm bootstrap
+    
+    - name: Installing cdk cli...
+      run: npm i -g aws-cdk
+    
+    - name: Downloading the internet... (npm install)
+      run: npm install
+    
+    - name: Building cdk stack...
+      run: npm run build
+    
+    # - name: Deplloing cdk stack...
+    #   env:
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+    #   run: cdk deploy
