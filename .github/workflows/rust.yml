@@ -6,17 +6,20 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Installing cdk cli
+    - name: install cdk
       run: npm i aws-cdk
     
-    - name: Testing cdk
+    - name: cdk version
       run: ./node_modules/.bin/cdk --version
 
     - name: npm install
       run: npm install
 
-    - name: Building cdk stack...
-      run: ./node_modules/.bin/cdk build
+    - name: npm run build
+      run: npm run build
+
+    - name: cdk synth
+      run: ./node_modules/.bin/cdk synth
     
     # - name: Building rust code...
     #   run: cargo build --verbose --release --manifest-path ./lambda-rust/Cargo.toml
@@ -27,9 +30,6 @@ jobs:
     # - name: Creating lambda.zip
     #   run: zip lambda.zip bootstrap
 
-    # - name: Building cdk stack...
-    #   run: ./node_modules/.bin/cdk build
-    
     # - name: Deplloing cdk stack...
     #   env:
     #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
