@@ -6,7 +6,7 @@ export class AwsCdkRustTestStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
     new lambda.Function(this, 'RustLambda', {
-      code: lambda.Code.fromAsset('./lambda.zip'),
+      code: lambda.Code.fromAsset('./lambda-rust.zip'),
       handler: 'RustLambda',
       runtime: lambda.Runtime.PROVIDED,
       memorySize: 3008,
